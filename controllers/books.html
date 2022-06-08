@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://rawgit.com/michaelbromley/angularUtils-pagination/master/dirPagination.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div ng-controller="MyController" class="my-controller">
+            <h1>Books</h1>
+
+            <small>this is in "MyController"</small>
+
+            <div class="row">
+              <div class="col-xs-4">
+                <h3>Books Page: {{ currentPage }}</h3>
+              </div>
+              <div class="col-xs-4">
+                <label for="search">Search:</label>
+                <input
+                  ng-model="q"
+                  id="search"
+                  class="form-control"
+                  placeholder="Filter text"
+                />
+              </div>
+              <div class="col-xs-4">
+                <label for="search">items per page:</label>
+                <input
+                  type="number"
+                  min="1"
+                  max="100"
+                  class="form-control"
+                  ng-model="pageSize"
+                />
+              </div>
+            </div>
+            <br />
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <ul>
+                  <li
+                    dir-paginate="book in books | filter:q | itemsPerPage: pageSize"
+                    current-page="currentPage"
+                  >
+                    <h6>{{ book }}</h6>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div ng-controller="OtherController" class="other-controller">
+            <small>this is in "OtherController"</small>
+            <div class="text-center">
+              <dir-pagination-controls
+                boundary-links="true"
+                on-page-change="pageChangeHandler(newPageNumber)"
+              ></dir-pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="../index.html">Add a book</a>
+    <script src="pagination.js"></script>
+  </body>
+</html>

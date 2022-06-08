@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body ng-app="myApp">
+    <div ng-controller="myCtrl">
+      <form name="bookForm">
+        <h1>Add a book</h1>
+        Book Name:
+        <input type="text" ng-model="name" required />
+        <br />
+        <br />
+        Select a Genre:
+        <select ng-model="selectedGenre" ng-options="x for x in names"></select>
+        <br />
+        <br />
+        Number of pages:
+        <input type="number" ng-model="pages" />
+        <br />
+        <br />
+
+        Price:
+        <input type="text" ng-model="price" />
+        <br />
+        <br />
+        <!-- <label>
+          <input type="checkbox" ng-model="user.agree" name="userAgree" />
+          Price:
+        </label>
+        <input ng-show="user.agree" type="text" ng-model="user.agreeSign" />
+        <br /> -->
+
+        <a href="#" ng-click="formReset()">Reset the form</a>
+
+        <br />
+        <div ng-if="errorMessage">{{ errorMessage }}</div>
+        <br />
+
+        <div class="form-group">
+          <button
+            type="button"
+            class="btn btn-success btn-lg btn-block"
+            ng-click="submit()"
+          >
+            <span class="glyphicon glyphicon-check"></span> Register Now
+          </button>
+        </div>
+
+        <div class="alert alert-success text-center" ng-show="valid">
+          <button type="button" class="close" ng-click="close()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <span class="glyphicon glyphicon-check"></span> Form Validated
+        </div>
+
+        <!-- <input type="submit" value="Submit" ng-click="submit()" /> -->
+      </form>
+
+      <br />
+
+      <a href="controllers/books.html">See all books</a>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
